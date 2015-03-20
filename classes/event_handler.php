@@ -428,6 +428,16 @@ class VIRTUALGIFTS_CLASS_EventHandler
             $event->setData($data);
         }
     }
+
+    public function getUserCreditsActionLabel( OW_Event $e )
+    {
+        $params = $e->getParams();
+
+        if ( !empty($params["pluginKey"]) && trim($params["pluginKey"]) == "virtualgifts" && !empty($params["actionKey"]) )
+        {
+            $e->setData(OW::getLanguage()->text("virtualgifts", "usercredits_action_send_virtual_gift"));
+        }
+    }
     
     public function init()
     {
@@ -458,5 +468,6 @@ class VIRTUALGIFTS_CLASS_EventHandler
         $em->bind('usercredits.on_action_collect', array($credits, 'bindCreditActionsCollect'));
 
         $em->bind('socialsharing.get_entity_info', array($this, 'sosialSharingGetGiftInfo'));
+        $em->bind("usercredits.get_action_label", array($this, "getUserCreditsActionLabel"));
     }
 }
