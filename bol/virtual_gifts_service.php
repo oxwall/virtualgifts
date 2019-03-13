@@ -308,7 +308,7 @@ final class VIRTUALGIFTS_BOL_VirtualGiftsService
      */
     public function getTemplateList( array $idList = null )
     {    
-        if ( count($idList) )
+        if ( !empty($idList) )
         {
             $tpls = $this->templateDao->findByIdList($idList);
         }
