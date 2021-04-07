@@ -306,7 +306,7 @@ final class VIRTUALGIFTS_BOL_VirtualGiftsService
      * @param array $idList
      * @return array
      */
-    public function getTemplateList( array $idList = null )
+    public function getTemplateList( array $idList = [] )
     {    
         if ( count($idList) )
         {
