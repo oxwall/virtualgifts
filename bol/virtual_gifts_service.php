@@ -38,6 +38,8 @@
  */
 final class VIRTUALGIFTS_BOL_VirtualGiftsService
 {
+    const PLUGIN_KEY = 'virtualgifts';
+
     /**
      * @var VIRTUALGIFTS_BOL_VirtualGiftsService
      */
@@ -308,7 +310,7 @@ final class VIRTUALGIFTS_BOL_VirtualGiftsService
      */
     public function getTemplateList( array $idList = [] )
     {    
-        if (!empty($idList) && count($idList) > 0)
+        if (!empty($idList) && count($idList ?? []) > 0)
         {
             $tpls = $this->templateDao->findByIdList($idList);
         }

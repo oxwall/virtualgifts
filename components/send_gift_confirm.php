@@ -185,32 +185,34 @@ class VIRTUALGIFTS_CMP_SendGiftConfirm extends OW_Component
 
 class ConfirmGiftForm extends Form
 {
+    const PLUGIN_KEY = VIRTUALGIFTS_BOL_VirtualGiftsService::PLUGIN_KEY;
+
     public function __construct( $templateId, $users )
     {
-        parent::__construct('confirm-gift-form');
+        parent::__construct('confirm-gift-form', self::PLUGIN_KEY);
         
         $lang = OW::getLanguage();
 
         $this->setAjax(true);
         $this->setAction(OW::getRouter()->urlFor('VIRTUALGIFTS_CTRL_Gifts', 'ajaxSendGifts'));
         
-        $tplId = new HiddenField('tplId');
+        $tplId = new HiddenField('tplId', self::PLUGIN_KEY);
         $tplId->setRequired(true);
         $tplId->setValue($templateId);
         $this->addElement($tplId);
         
-        $message = new Textarea('message');
+        $message = new Textarea('message', self::PLUGIN_KEY);
         $this->addElement($message);
         
-        $userIdList = new HiddenField('userIdList');
+        $userIdList = new HiddenField('userIdList', self::PLUGIN_KEY);
         $userIdList->setValue($users);
         $this->addElement($userIdList);
         
-        $isPrivate = new CheckboxField('isPrivate');
+        $isPrivate = new CheckboxField('isPrivate', self::PLUGIN_KEY);
         $isPrivate->setLabel($lang->text('virtualgifts', 'send_private'));
         $this->addElement($isPrivate);
         
-        $submit = new Submit('send');
+        $submit = new Submit('send', self::PLUGIN_KEY);
         $submit->setLabel($lang->text('virtualgifts', 'btn_send'));
         $this->addElement($submit);
         
